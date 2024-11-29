@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TurabFreshExports - Bringing you the goodness of nature with premium agricultural exports from Uganda.">
+    <meta name="keywords" content="Agriculture, Fresh Produce, Exports, Uganda, Hass Avocado, Pineapple, Passion Fruit">
+    <meta name="author" content="TurabFreshExports">
+    <meta property="og:title" content="TurabFreshExports">
+    <meta property="og:description" content="Bringing you the goodness of nature with premium agricultural exports from Uganda.">
+    <meta property="og:image" content="Images/avocadobg.jpg">
+    <title>TurabFreshExports</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        nav {
+            background: #3B7A57;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        header.hero {
+            background: url('Images/avocadobg.jpg') center/cover no-repeat;
+            height: 50vh;
+            position: relative;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        header.hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        header.hero p {
+            font-size: 1.2em;
+        }
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .product-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            max-width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        .product-card button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        .product-card button:hover {
+            background: #218838;
+        }
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%; /* Adjust width for responsiveness */
+    max-width: 500px; /* Set a maximum width */
+    box-sizing: border-box; /* Include padding in width calculations */
+    position: relative;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content button {
+    width: 100%; /* Make fields fit the container */
+    max-width: 100%; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.modal-content label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+        .modal-content input,
+        .modal-content select,
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .modal-content button {
+            width: 100%;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal-content button:hover {
+            background: #218838;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
+        }
+        /* Footer Section */
+        footer {
+            background: #3B7A57;
+            color: white;
+            padding: 20px 0;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .footer-about, .footer-links, .footer-socials {
+            flex: 1;
+            margin: 0 15px;
+        }
+        .footer-about h4,
+        .footer-links h4,
+        .footer-socials h4 {
+            margin-bottom: 10px;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+        .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer-socials .social-icons {
+    display: flex;
+    justify-content: start; /* Align icons to the left */
+    gap: 10px; /* Use consistent spacing between icons */
+    margin-top: 10px;
+}
+
+.footer-socials .social-icons a {
+    display: inline-block;
+    color: white; /* Default color for icons */
+    font-size: 1.5em; /* Icon size */
+    transition: color 0.3s; /* Smooth hover effect */
+    text-decoration: none; /* Remove underline for links */
+}
+
+.footer-socials .social-icons a:hover {
+    color: #28a745; /* WhatsApp green for hover effect */
+}
+
+        .footer-bottom {
+            text-align: center;
+            background: #2f6d47;
+            padding: 10px;
+        }
+        /* Contact Form Styling */
+        #contact {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #contact h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+        #contact form {
+            display: flex;
+            flex-direction: column;
+        }
+        #contact form label {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        #contact form input,
+        #contact form textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            width: 100%;
+        }
+        #contact form button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        #contact form button:hover {
+            background-color: #218838;
+        }
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .product-grid {
+                flex-direction: column;
+            }
+            .product-card {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div style="display: flex; align-items: left; justify-content: space-between; padding: 0 20px;">
+            <!-- Africa Outline Image -->
+            <img src="Images/africa-outline.svg" alt="" style="height: 50px; margin-right: 20px;">
+            
+            <!-- Navigation Links -->
+            <ul style="display: flex; align-items: center; list-style: none; margin: 0; padding: 0;">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <h1>Fresh From Uganda</h1>
+        <p>Bringing you the goodness of nature</p>
+    </header>
+
+    <!-- Product Section -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="Images/avocado.jpg" alt="Hass Avocados">
+                <h3>Hass Avocados</h3>
+                <p>Fresh, rich, and nutritious avocados from Uganda.</p>
+                <button onclick="openModal('Hass Avocados')">Request a Quote</button>
+            </div>
+            <div class="product-card">
+                <img src="Images/pineapple.jpg" alt="Pineapples">
+                <h3>Pineapples</h3>
+                <p>Sweet, juicy pineapples handpicked at their peak.</p>
+                <button onclick="openModal('Pineapples')">Request a Quote</button>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form
+        action="https://formspree.io/f/xeoqpokq"
+        method="POST"
+      >
+        <label>
+          Your email:
+          <input type="email" name="email">
+        </label>
+        <label>
+          Your message:
+          <textarea name="message"></textarea>
+        </label>
+        <!-- your other form fields go here -->
+        <button type="submit">Send</button>
+      </form>
+        
+        
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h4>About Us</h4>
+                <p>We are committed to delivering the freshest agricultural products from Uganda directly to you.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-socials">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/25677732234" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TurabFreshExports. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        // Contact form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Your message has been sent to yourbusiness@email.com!');
+    document.getElementById('contactForm').reset(); // Reset form after submission
+});
+
+        
+    </script>
+</body>
+<script>
+    
+   // Modal Handling
+const modal = document.createElement('div');
+modal.className = 'modal';
+modal.id = 'quoteModal';
+modal.innerHTML = `
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h3>Request a Quote</h3>
+        <form id="quoteForm">
+            <!-- Select Fruit Field -->
+            <label for="product">Select Product</label>
+            <select id="product" name="Product" required>
+                <option value="" disabled selected>Select a fruit</option>
+                <option value="Hass Avocados">Hass Avocados</option>
+                <option value="Pineapples">Pineapples</option>
+                <option value="Passion Fruits">Passion Fruits</option>
+                <option value="Matoke (Bananas)">Matoke (Bananas)</option>
+                <option value="Coffee Beans">Coffee Beans</option>
+                <option value="Tea Leaves">Tea Leaves</option>
+                <option value="Vanilla">Vanilla</option>
+            </select>
+            
+            <!-- Quantity Field -->
+            <label for="quantity">Quantity (kg)</label>
+            <input type="number" id="quantity" name="Quantity" placeholder="Enter quantity in kg" required>
+            
+            <!-- Country/Location Field -->
+            <label for="country">Country/Location</label>
+            <input type="text" id="country" name="Country" placeholder="Enter your country or location" required>
+            
+            <!-- Contact Name -->
+            <label for="quoteName">Your Name</label>
+            <input type="text" id="quoteName" name="Name" placeholder="Enter your name" required>
+            
+            <!-- Contact Email -->
+            <label for="quoteEmail">Your Email</label>
+            <input type="email" id="quoteEmail" name="Email" placeholder="Enter your email" required>
+            
+            <!-- Submit Button -->
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+`;
+
+document.body.appendChild(modal);
+
+
+   // Open Modal and Populate Product Field
+function openModal(productName) {
+    document.getElementById('quoteModal').style.display = 'flex';
+    document.getElementById('product').value = productName; // Populate product name
+}
+
+// Close Modal
+function closeModal() {
+    document.getElementById('quoteModal').style.display = 'none';
+}
+
+// Handle Quote Form Submission
+document.getElementById('quoteForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form submission for now
+    const product = document.getElementById('product').value;
+    const quantity = document.getElementById('quantity').value;
+    const country = document.getElementById('country').value;
+    const name = document.getElementById('quoteName').value;
+    const email = document.getElementById('quoteEmail').value;
+
+    alert(`
+        Thank you, ${name}!
+        Here are the details of your quote request:
+        - Product: ${product}
+        - Quantity: ${quantity} kg
+        - Country/Location: ${country}
+        - Contact Email: ${email}
+    `);
+
+    closeModal();
+    this.reset(); // Reset the form fields after submission
+});
+
+    // Handle Quote Form Submission
+    document.getElementById('quoteForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
+        alert('Your quote request has been sent for ' + document.getElementById('product').value + '!');
+        closeModal();
+    });
+</script>
+
+</html>
+
+
+
